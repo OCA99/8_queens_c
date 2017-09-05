@@ -1,7 +1,7 @@
 default: create
 
 create:
-	gcc -Wall -Werror -Wextra -Iinc src/*.c
+	gcc -Wall -Iinc src/*.c
 
 clean:
 	rm *.out
