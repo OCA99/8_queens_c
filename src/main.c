@@ -98,7 +98,20 @@ void			print_board(t_board* board)
 	int			k;
 
 	s = board->size;
-	printf("  ");
+	i = 0;
+	while (i < s * 2 + 1 + (s * 2) + 2)
+	{
+		printf("-");
+		i++;
+	}
+	printf("\nSolution number %d\n", solution_number);
+	i = 0;
+	while (i < s * 2 + 1 + (s * 2) + 2)
+	{
+		printf("-");
+		i++;
+	}
+	printf("\n  ");
 	i = 0;
 	while (i < s * 2 + 1 + (s * 2))
 	{
@@ -186,7 +199,11 @@ int				place_queen(t_board* board, int d, int i)
 int 			main(int argc, char **argv)
 {
 	t_board*	board;
+	clock_t		start;
+	clock_t		end;
+	double		cpu_time;
 
+	start = clock();
 	solution_number = 0;
 	if (atoi(argv[3]) < 4)
 	{
@@ -206,7 +223,15 @@ int 			main(int argc, char **argv)
 	board = define_board(atoi(argv[1]) - 1, atoi(argv[2]) - 1, atoi(argv[3]));
 	update_board(board);
 	place_queen(board, 1, 0);
+	if (solution_number == 0)
+	{
+		printf("This case has no solution.\n");
+		return (0);
+	}
 	printf("Total # of solutions: %d\n", solution_number);
+	end = clock();
+	cpu_time = ((double)(end - start)) / CLOCKS_PER_SEC;
+	printf("Time elapsed: %lf\n", cpu_time);
 
 	return (0);
 }
